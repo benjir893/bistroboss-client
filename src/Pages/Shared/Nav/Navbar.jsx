@@ -7,8 +7,8 @@ const Navbar = () => {
     const navlinks = <>
         <li><Link  className='text-white font-semibold font-robotocondence'>CONTACT US</Link></li>
         <li><Link  className='text-white font-semibold font-robotocondence'>DASHBOARD</Link></li>
-        <li ><Link className='text-white font-semibold font-robotocondence' >HOME</Link></li>
-        <li><Link  className='text-white font-semibold font-robotocondence'>OUR MENU</Link></li>
+        <li ><Link to={'/'} className='text-white font-semibold font-robotocondence' >HOME</Link></li>
+        <li><Link to={'/menu'}  className='text-white font-semibold font-robotocondence'>OUR MENU</Link></li>
         <li ><Link className='text-white font-semibold font-robotocondence'>OUR SHOP</Link></li>
         <li ><Link className='text-white font-semibold font-robotocondence'> <img className='w-8 h-8 rounded-full' src={carticon} alt="" /></Link></li>
     </>

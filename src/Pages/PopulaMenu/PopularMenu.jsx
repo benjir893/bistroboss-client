@@ -2,6 +2,7 @@ import { data } from "autoprefixer";
 import { useEffect, useState } from "react";
 import SectionTitle from "../components/SectionTitle";
 import Menuitem from "./Menuitem";
+import { Link } from "react-router-dom";
 
 
 const PopularMenu = () => {
@@ -24,6 +25,9 @@ const PopularMenu = () => {
                 {
                     menu.map(item =><Menuitem key={item._id} item={item}></Menuitem>)
                 }
+            </div>
+            <div className="text-center">
+                <Link to={'/'}><button className="text-blue-900 font-robotocondence font-semibold border-b-2 border-orange-600">View Full Menu</button></Link>
             </div>
         </div>
     );

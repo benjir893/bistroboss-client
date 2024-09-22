@@ -1,10 +1,14 @@
 
-import chefservice from '../../../assets/home/chef-service.jpg';
-const Singlepic = () => {
+import './singlepie.css'
+
+const Singlepic = ({header, paragraph}) => {
     return (
-        <div >
-            <img className="w-2/3 h-2/3 mx-auto my-10 relative" src={chefservice} alt="" />
-            <p className='text-center w-1/3 p-10 bg-white -mt-72 ml-96 absolute'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus deleniti obcaecati explicabo veniam aliquam earum, alias asperiores nam! Itaque nam aspernatur molestiae aliquam autem delectus optio inventore odio vitae veniam!</p>
+        <div className='singlepicbg bg-fixed text-center p-5' >
+            <div className="text-center mx-auto w-1/2 p-10 bg-white rounded-lg">
+
+            <h1 className='text-center text-2xl text-blue-900 font-semibold font-robotocondence mt-5 uppercase'>{header}</h1>
+            <p className=''>{paragraph}</p>
+            </div>
 
         </div>
     );
