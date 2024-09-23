@@ -7,7 +7,7 @@ import { FaInstagram } from "react-icons/fa6";
 
 const Footer = () => {
     return (
-        <div>
+        <div className='mt-5'>
             <footer className="footer bg-gray-700 ">
                 <div className='bg-gray-600 h-full w-full p-6 '>
                     <img className='w-24 h-24 mx-auto rounded-full' src={logo} alt="" />
