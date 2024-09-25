@@ -28,20 +28,21 @@ const Menu = () => {
             <Helmet>
                 <title>BBs|menu</title>
             </Helmet>
-            <Navbar></Navbar>
+            
             <Menubanner img={banner3} heading={"our menu"} paragraph={"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Assumenda, provident nam quod non illo corporis voluptatibus ipsa ullam omnis, dolore obcaecati commodi consequatur aspernatur magnam repellat reiciendis odit quidem vitae."}></Menubanner>
 
             <div className="text-center">
                 <SectionTitle heading={"today's offers"} subheading={"---Don't miss---"}></SectionTitle>
-                <MenuCategory items={offered}></MenuCategory>
-                <Link to={'/'}><button className="text-blue-950 font-robotocondence font-semibold uppercase p-2 my-10 border-solid border-b-4 border-blue-950 rounded-xl">order your favorite food</button></Link>
+                <MenuCategory items={offered}>
+                </MenuCategory>
+                    <Link to={offered && `/order/${offered}`}><button className="text-blue-950 font-robotocondence font-semibold uppercase p-2 my-10 border-solid border-b-4 border-blue-950 rounded-xl">order your favorite food</button></Link>
             </div>
 
             <div className=" text-center my-10">
                 <Menubanner img={dissert} heading={"disserts"} paragraph={"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Assumenda, provident nam quod non illo corporis voluptatibus ipsa ullam omnis, dolore obcaecati commodi consequatur aspernatur magnam repellat reiciendis odit quidem vitae."}></Menubanner>
                 <div className="my-12">
-                    <MenuCategory items={dessert}></MenuCategory>
-                    <Link to={'/'}><button className="text-blue-950 font-robotocondence font-semibold uppercase p-2 my-10 border-solid border-b-4 border-blue-950 rounded-xl">order your favorite food</button></Link>
+                    <MenuCategory items={dessert} heading={"Desserts"} img={dissert} paragraph={"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Assumenda, provident nam quod non illo corporis voluptatibus ipsa ullam omnis, dolore obcaecati commodi consequatur aspernatur magnam repellat reiciendis odit quidem vitae."}></MenuCategory>
+                    <Link to={`/order/${dessert}`}><button className="text-blue-950 font-robotocondence font-semibold uppercase p-2 my-10 border-solid border-b-4 border-blue-950 rounded-xl">order your favorite food</button></Link>
                 </div>
             </div>
 
@@ -49,27 +50,26 @@ const Menu = () => {
                 <Menubanner img={pizzabanner} heading={"pizza"} paragraph={"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Assumenda, provident nam quod non illo corporis voluptatibus ipsa ullam omnis, dolore obcaecati commodi consequatur aspernatur magnam repellat reiciendis odit quidem vitae."}></Menubanner>
                 <div className="my-10">
                     <MenuCategory items={pizza}></MenuCategory>
-                    <Link to={'/'}><button className="text-blue-950 font-robotocondence font-semibold uppercase p-2 my-10 border-solid border-b-4 border-blue-950 rounded-xl">order your favorite food</button></Link>
+                    <Link to={`/order/${pizza}`}><button className="text-blue-950 font-robotocondence font-semibold uppercase p-2 my-10 border-solid border-b-4 border-blue-950 rounded-xl">order your favorite food</button></Link>
                 </div>
             </div>
             <div className="text-center my-10">
                 <Menubanner img={saladbanner} heading={"salad"} paragraph={"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Assumenda, provident nam quod non illo corporis voluptatibus ipsa ullam omnis, dolore obcaecati commodi consequatur aspernatur magnam repellat reiciendis odit quidem vitae."}></Menubanner>
                 <div className="my-10">
                     <MenuCategory items={salad}></MenuCategory>
-                    <Link to={'/'}><button className="text-blue-950 font-robotocondence font-semibold uppercase p-2 my-10 border-solid border-b-4 border-blue-950 rounded-xl">order your favorite food</button></Link>
+                    <Link to={`/order/${salad}`}><button className="text-blue-950 font-robotocondence font-semibold uppercase p-2 my-10 border-solid border-b-4 border-blue-950 rounded-xl">order your favorite food</button></Link>
                 </div>
             </div>
 
-            
+
             <div className="text-center my-10">
                 <Menubanner img={soupbanner} heading={"soup"} paragraph={"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Assumenda, provident nam quod non illo corporis voluptatibus ipsa ullam omnis, dolore obcaecati commodi consequatur aspernatur magnam repellat reiciendis odit quidem vitae."}></Menubanner>
                 <div className="my-10">
                     <MenuCategory items={soup}></MenuCategory>
-                    <Link to={'/'}><button className="text-blue-950 font-robotocondence font-semibold uppercase p-2 my-10 border-solid border-b-4 border-blue-950 rounded-xl">order your favorite food</button></Link>
+                    <Link to={`/order/${soup}`}><button className="text-blue-950 font-robotocondence font-semibold uppercase p-2 my-10 border-solid border-b-4 border-blue-950 rounded-xl">order your favorite food</button></Link>
                 </div>
             </div>
 
-            <Footer></Footer>
         </div>
     );
 };

@@ -9,7 +9,7 @@ const Navbar = () => {
         <li><Link  className='text-white font-semibold font-robotocondence'>DASHBOARD</Link></li>
         <li ><Link to={'/'} className='text-white font-semibold font-robotocondence' >HOME</Link></li>
         <li><Link to={'/menu'}  className='text-white font-semibold font-robotocondence'>OUR MENU</Link></li>
-        <li ><Link to={'/order'} className='text-white font-semibold font-robotocondence'>OUR SHOP</Link></li>
+        <li ><Link to={'/order/salad'} className='text-white font-semibold font-robotocondence'>OUR SHOP</Link></li>
         <li ><Link className='text-white font-semibold font-robotocondence'> <img className='w-8 h-8 rounded-full' src={carticon} alt="" /></Link></li>
     </>
     return (
@@ -45,7 +45,8 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end pr-2">
-                    <a className="btn bg-transparent text-white">SIGN OUT</a>
+                    <Link to={'/login'}><button className="btn bg-transparent text-white">SIGN OUT</button></Link>
+                    {/* <Link to={'/register'}><button className="btn bg-transparent text-white">SIGN IN</button></Link> */}
                     <p className='text-5xl text-white'><CgProfile /></p>
                 </div>
             </div>
