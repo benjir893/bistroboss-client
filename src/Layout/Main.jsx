@@ -5,18 +5,17 @@ import Register from "../Pages/Register/Register";
 
 
 const Main = () => {
- 
-    // const noheaderFooterlogin = location.pathname.includes('/login');
-    // const noheaderfooterregister = location.pathname.includes('/register')
+
+    // const noheaderFooter = location.pathname.includes('/login') || location.pathname.includes('/register');
+
     return (
         <div>
-            {/* {noheaderFooterlogin || <Navbar></Navbar>}
-            {noheaderfooterregister || <Navbar></Navbar>} */}
+            {/* {noheaderFooter || <Navbar></Navbar>} */}
             <Navbar></Navbar>
             <Outlet></Outlet>
             <Footer></Footer>
-            {/* {noheaderfooterregister || <Footer></Footer>}
-            {noheaderFooterlogin || <Footer></Footer>} */}
+            {/* {noheaderFooter || <Footer></Footer>} */}
+
         </div>
     );
 };

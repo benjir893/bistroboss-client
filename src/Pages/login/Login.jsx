@@ -1,12 +1,15 @@
-import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
-import { loadCaptchaEnginge, LoadCanvasTemplate, LoadCanvasTemplateNoReload, validateCaptcha } from 'react-simple-captcha';
+import { useContext, useEffect, useRef, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
+import { Authcontext } from "../../Authentication/AuthProvider";
 
 
 const Login = () => {
 
     const captchaRef = useRef(null);
     const [disabled, setDisabled] = useState(true)
+    const{user, loginUser} = useContext(Authcontext)
+    const navigate = useNavigate();
 
     useEffect(()=>{
         loadCaptchaEnginge(6); 
@@ -16,10 +19,20 @@ const Login = () => {
         event.preventDefault();
 
         const form = event.target;
-        const name = form.name.value;
+        const email = form.email.value;
         const password = form.password.value;
-        const newuser = { name, password };
-        console.log(newuser)
+        // const newuser = { email, password };
+        // console.log(newuser)
+        loginUser(email, password)
+        .then(result =>{
+            const user = result.user;
+            console.log(user);
+            navigate('/')
+        })
+        .then(error =>{
+            console.error(error)
+        })
+
     }
     const handlCaptcha =()=>{
         const user_captcha_value = captchaRef.current.value;
@@ -44,7 +57,7 @@ const Login = () => {
                                 <label className="label">
                                     <span className="label-text">Email</span>
                                 </label>
-                                <input type="email" name="name" placeholder="email" className="input input-bordered" required />
+                                <input type="email" name="email" placeholder="email" className="input input-bordered" required />
                             </div>
                             <div className="form-control">
                                 <label className="label">
@@ -63,7 +76,10 @@ const Login = () => {
                                 <button onClick={handlCaptcha} className="btn btn-outline btn-xs">validate</button>
                             </div>
                             <div className="form-control mt-6">
-                                <input disabled={disabled} className="btn btn-primary" type="submit" value={'Login'}></input>
+                                {
+                                    user?<><input disabled={disabled} className="btn btn-primary" type="submit" value={'Login'}></input></>:<><input disabled={disabled} className="btn btn-primary" type="submit" value={'LogOut'}></input></>
+                                }
+                                
                             </div>
                         </form>
                     </div>

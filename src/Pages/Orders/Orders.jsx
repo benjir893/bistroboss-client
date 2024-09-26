@@ -31,7 +31,7 @@ const Orders = () => {
             <Helmet>
                 <title>BBs|ourshop</title>
             </Helmet>
-            <Navbar></Navbar>
+            {/* <Navbar></Navbar> */}
             <Menubanner img={bannerImg2} heading={"our shop"} paragraph={"WOULD YOU LIKE TO TRY A DISH"} ></Menubanner>
             <div className="text-center my-10">
                 <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
@@ -93,7 +93,7 @@ const Orders = () => {
                     </TabPanel>
                 </Tabs>
             </div>
-            <Footer></Footer>
+            {/* <Footer></Footer> */}
         </div>
     );
 };
