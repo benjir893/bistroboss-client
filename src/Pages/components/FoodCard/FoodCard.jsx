@@ -1,6 +1,9 @@
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
 import { useLocation, useNavigate } from "react-router-dom";
+// import axios from "axios";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useCart from "../../hooks/useCart";
 
 
 
@@ -9,13 +12,16 @@ const FoodCard = ({ item }) => {
     const location = useLocation()
     const { user } = useAuth();
     const navigate = useNavigate()
-    const handleAddToCart = (food) => {
+    const axiosSecure = useAxiosSecure()
+    const[, refetch] = useCart()
+
+    const handleAddToCart = () => {
         
         // console.log(user.email)
         // console.log(user.displayName)
         // console.log(food)
         if (user && user.email) {
-            console.log(user.email, food);
+        //    send data to cart in cartcollection
             const cartItem = {
                 menuId: _id,
                 email: user.email,
@@ -23,6 +29,20 @@ const FoodCard = ({ item }) => {
                 image,
                 price
             }
+            axiosSecure.post('/cart', cartItem)
+            .then(res =>{
+                console.log(res.data)
+                if(res.data.insertedId){
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: `${name} has been added to the cart`,
+                        showConfirmButton: false,
+                        timer: 1500
+                      });
+                      refetch()
+                }
+            })
 
         }
         else {
@@ -61,7 +81,7 @@ const FoodCard = ({ item }) => {
                     <h2 className="card-title">{name}</h2>
                     <p>Ingradients: {recipe}</p>
                     <div className="card-actions justify-end">
-                        <button onClick={() => handleAddToCart(item)}
+                        <button onClick={handleAddToCart}
                             className="btn btn-primary font-robotocondence font-semibold bg-lime-500 hover:bg-lime-300 uppercase">add to cart</button>
                     </div>
                 </div>

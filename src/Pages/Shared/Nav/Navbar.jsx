@@ -6,9 +6,11 @@ import logo from '../../../assets/logo.webp';
 import { CgProfile } from "react-icons/cg";
 import { useContext } from 'react';
 import { Authcontext } from '../../../Authentication/AuthProvider';
+import useCart from '../../hooks/useCart';
 const Navbar = () => {
     const { user, logout } = useContext(Authcontext)
     const navigate = useNavigate()
+    const[cart]= useCart();
     const navlinks = <>
         <li><Link className='text-white font-semibold font-robotocondence'>CONTACT US</Link></li>
         <li><Link className='text-white font-semibold font-robotocondence'>DASHBOARD</Link></li>
@@ -17,7 +19,7 @@ const Navbar = () => {
         <li ><Link to={'/order/salad'} className='text-white font-semibold font-robotocondence'>OUR SHOP</Link></li>
         <li ><Link to={'/'} className='text-white -mt-4'> <button className="btn btn-ghost">
             <FaShoppingCart />
-            <div className="badge badge-secondary">+0</div>
+            <div className="badge badge-secondary">+{cart?.length}</div>
         </button></Link></li>
     </>
     const handleLogout = () => {
