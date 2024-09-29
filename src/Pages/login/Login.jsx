@@ -1,19 +1,22 @@
-import { useContext, useEffect, useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import { Authcontext } from "../../Authentication/AuthProvider";
 
 
 const Login = () => {
 
-    const captchaRef = useRef(null);
-    const [disabled, setDisabled] = useState(true)
-    const{user, loginUser} = useContext(Authcontext)
-    const navigate = useNavigate();
 
-    useEffect(()=>{
-        loadCaptchaEnginge(6); 
-    },[])
+    const [disabled, setDisabled] = useState(true)
+    const { user, loginUser } = useContext(Authcontext)
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || '/'
+
+    useEffect(() => {
+        loadCaptchaEnginge(6);
+    }, [])
 
     const handlLogin = event => {
         event.preventDefault();
@@ -24,22 +27,22 @@ const Login = () => {
         // const newuser = { email, password };
         // console.log(newuser)
         loginUser(email, password)
-        .then(result =>{
-            const user = result.user;
-            console.log(user);
-            navigate('/')
-        })
-        .then(error =>{
-            console.error(error)
-        })
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                navigate(from, { replace: true })
+            })
+            .then(error => {
+                console.error(error)
+            })
 
     }
-    const handlCaptcha =()=>{
-        const user_captcha_value = captchaRef.current.value;
-        if(validateCaptcha(user_captcha_value)){
+    const handlCaptcha = (e) => {
+        const user_captcha_value = e.target.value;
+        if (validateCaptcha(user_captcha_value)) {
             setDisabled(false);
         }
-        else{
+        else {
             setDisabled(true)
         }
         // console.log(user_captcha_value)
@@ -72,16 +75,15 @@ const Login = () => {
                                 <label className="label">
                                     <LoadCanvasTemplate />
                                 </label>
-                                <input type="text" ref={captchaRef} name="captcha" placeholder="type the captcha above" className="input input-bordered" required />
-                                <button onClick={handlCaptcha} className="btn btn-outline btn-xs">validate</button>
+                                <input onBlur={handlCaptcha} type="text" name="captcha" placeholder="type the captcha above" className="input input-bordered" required />
+                                {/* <button className="btn btn-outline btn-xs">validate</button> */}
                             </div>
                             <div className="form-control mt-6">
-                                {
-                                    user?<><input disabled={disabled} className="btn btn-primary" type="submit" value={'Login'}></input></>:<><input disabled={disabled} className="btn btn-primary" type="submit" value={'LogOut'}></input></>
-                                }
-                                
+                                <input disabled={disabled} className="btn btn-primary" type="submit" value={'Login'}></input>
+
                             </div>
                         </form>
+                        <Link className="p-2" to={'/register'}><small>No Account yet ?</small><strong>Register</strong></Link>
                     </div>
                 </div>
             </div>
