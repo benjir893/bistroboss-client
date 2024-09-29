@@ -1,29 +1,33 @@
 
 import { Link, useNavigate } from 'react-router-dom';
 import carticon from '../../../assets/carticon.png';
+import { FaShoppingCart } from "react-icons/fa";
 import logo from '../../../assets/logo.webp';
 import { CgProfile } from "react-icons/cg";
 import { useContext } from 'react';
 import { Authcontext } from '../../../Authentication/AuthProvider';
 const Navbar = () => {
-    const{user, logout} = useContext(Authcontext)
+    const { user, logout } = useContext(Authcontext)
     const navigate = useNavigate()
     const navlinks = <>
-        <li><Link  className='text-white font-semibold font-robotocondence'>CONTACT US</Link></li>
-        <li><Link  className='text-white font-semibold font-robotocondence'>DASHBOARD</Link></li>
+        <li><Link className='text-white font-semibold font-robotocondence'>CONTACT US</Link></li>
+        <li><Link className='text-white font-semibold font-robotocondence'>DASHBOARD</Link></li>
         <li ><Link to={'/'} className='text-white font-semibold font-robotocondence' >HOME</Link></li>
-        <li><Link to={'/menu'}  className='text-white font-semibold font-robotocondence'>OUR MENU</Link></li>
+        <li><Link to={'/menu'} className='text-white font-semibold font-robotocondence'>OUR MENU</Link></li>
         <li ><Link to={'/order/salad'} className='text-white font-semibold font-robotocondence'>OUR SHOP</Link></li>
-        <li ><Link className='text-white font-semibold font-robotocondence'> <img className='w-8 h-8 rounded-full' src={carticon} alt="" /></Link></li>
+        <li ><Link to={'/'} className='text-white -mt-4'> <button className="btn btn-ghost">
+            <FaShoppingCart />
+            <div className="badge badge-secondary">+0</div>
+        </button></Link></li>
     </>
-    const handleLogout = ()=>{
+    const handleLogout = () => {
         logout()
-        .then(()=>{
-            navigate('/login')
-        })
-        .catch(error=>{
-            console.error(error)
-        })
+            .then(() => {
+                navigate('/login')
+            })
+            .catch(error => {
+                console.error(error)
+            })
     }
     return (
         <div>
@@ -59,15 +63,15 @@ const Navbar = () => {
                 </div>
                 <div className="navbar-end pr-2">
                     {
-                        user ?<><span className='text-white font-robotocondence px-1'>{user.displayName}</span>
-                        <button onClick={handleLogout} className="btn bg-transparent text-white">SIGN OUT</button></>:
-                        <><Link to={'/login'}><button className="btn bg-transparent text-white">SIGN IN</button></Link></>
+                        user ? <><span className='text-white font-robotocondence px-1'>{user.displayName}</span>
+                            <button onClick={handleLogout} className="btn bg-transparent text-white">SIGN OUT</button></> :
+                            <><Link to={'/login'}><button className="btn bg-transparent text-white">SIGN IN</button></Link></>
                     }
-                    
+
                     {
-                        user ? <><img className='w-10 h-10 rounded-full' src={user.photoURL}></img></>:<p className='text-5xl text-white'><CgProfile /></p>
+                        user ? <><img className='w-10 h-10 rounded-full' src={user.photoURL}></img></> : <p className='text-5xl text-white'><CgProfile /></p>
                     }
-                    
+
                 </div>
             </div>
         </div>

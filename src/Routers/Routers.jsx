@@ -23,7 +23,7 @@ export const router = createBrowserRouter([
             },
             {
                 path:'/order/:category',
-                element:<PrivateRouter><Orders></Orders></PrivateRouter>
+                element:<Orders></Orders>
             },
         ]
     },
