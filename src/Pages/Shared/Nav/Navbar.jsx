@@ -17,7 +17,8 @@ const Navbar = () => {
         <li ><Link to={'/'} className='text-white font-semibold font-robotocondence' >HOME</Link></li>
         <li><Link to={'/menu'} className='text-white font-semibold font-robotocondence'>OUR MENU</Link></li>
         <li ><Link to={'/order/salad'} className='text-white font-semibold font-robotocondence'>OUR SHOP</Link></li>
-        <li ><Link to={'/'} className='text-white -mt-4'> <button className="btn btn-ghost">
+        <li ><Link to={'/dashboard'} className='text-white font-semibold font-robotocondence'>DASHBOARD</Link></li>
+        <li ><Link to={'/dashboard/cart'} className='text-white -mt-4'> <button className="btn btn-ghost">
             <FaShoppingCart />
             <div className="badge badge-secondary">+{cart?.length}</div>
         </button></Link></li>
