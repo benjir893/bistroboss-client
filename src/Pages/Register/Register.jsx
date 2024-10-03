@@ -3,9 +3,13 @@ import { Authcontext } from "../../Authentication/AuthProvider";
 import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet-async";
 import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import useAxiosPublic from "../hooks/useAxiosPublic";
+import Sociallogin from "../components/socialLogin/Sociallogin";
 
 
 const Register = () => {
+    const axiospublic = useAxiosPublic();
     const {
         register,
         handleSubmit,
@@ -15,17 +19,38 @@ const Register = () => {
     const { createUser, updateuserinfo } = useContext(Authcontext);
     const navigate = useNavigate();
     const onSubmit = (data) => {
-         console.log(data) 
+        //  console.log(data) 
          createUser(data.email, data.password)
          .then(result=>{
             const loggeduser = result.user;
             console.log(loggeduser);
             updateuserinfo(data.name, data.photo)
             .then(()=>{
-                console.log('user profile has been updated')
-                reset();
-                alert(" a new user has been added successfully")
-                navigate('/')
+                // console.log('user profile has been updated')
+                // create a new user in database
+                const userinfo = {
+                    name:data.name,
+                    photo:data.photo,
+                    email:data.email,
+                    password:data.password
+                }
+                axiospublic.post('/user', userinfo)
+                .then(res =>{
+                    if(res.data.insertedId){
+                        
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: "A new User has been added",
+                            showConfirmButton: false,
+                            timer: 1500
+                          });
+                          reset();
+                          navigate('/');
+                    }
+                    
+                })
+                
             })
             .catch(error =>console.error(error));
             
@@ -106,7 +131,9 @@ const Register = () => {
                                     <input className="btn btn-primary" type="submit" value="Register" />
                                 </div>
                             </form>
-                            <button className="btn">Login with Google</button>
+                            <div className="">
+                                <Sociallogin></Sociallogin>
+                            </div>
                             <Link className="p-2" to={'/login'}><small>Already have an account? </small><strong>Login</strong></Link>
                         </div>
                     </div>

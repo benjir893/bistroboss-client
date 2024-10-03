@@ -12,8 +12,7 @@ const Navbar = () => {
     const navigate = useNavigate()
     const[cart]= useCart();
     const navlinks = <>
-        <li><Link className='text-white font-semibold font-robotocondence'>CONTACT US</Link></li>
-        <li><Link className='text-white font-semibold font-robotocondence'>DASHBOARD</Link></li>
+        <li><Link to={'/contact'} className='text-white font-semibold font-robotocondence'>CONTACT US</Link></li>
         <li ><Link to={'/'} className='text-white font-semibold font-robotocondence' >HOME</Link></li>
         <li><Link to={'/menu'} className='text-white font-semibold font-robotocondence'>OUR MENU</Link></li>
         <li ><Link to={'/order/salad'} className='text-white font-semibold font-robotocondence'>OUR SHOP</Link></li>

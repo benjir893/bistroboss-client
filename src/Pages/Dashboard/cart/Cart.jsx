@@ -1,10 +1,13 @@
+import Swal from "sweetalert2";
 import SectionTitle from "../../components/SectionTitle";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useCart from "../../hooks/useCart";
 import { MdDeleteForever } from "react-icons/md";
 
 
 const Cart = () => {
-    const [cart] = useCart();
+    const [cart, refetch] = useCart();
+    
     /**========================= 
      * basic reduce structure to get total
      *  const numbers =[1,2,3,4,5,6,7,8,9]
@@ -16,6 +19,36 @@ const Cart = () => {
     const totalPrice = cart.reduce((total, item) => {
         return total + item.price
     }, 0)
+
+    const axiosSecure = useAxiosSecure();
+
+    const handleDelete=(id)=>{
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+          }).then((result) => {
+            if (result.isConfirmed) {
+                axiosSecure.delete(`/cart/${id}`)
+                .then(res =>{
+                    if(res.data.deletedCount > 0){
+                        refetch();
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Your file has been deleted.",
+                            icon: "success"
+                          });
+
+                    }
+                })
+            
+            }
+          });
+    }
 
     return (
         <div>
@@ -63,7 +96,7 @@ const Cart = () => {
                                     </td>
                                     <td>{item.price}</td>
                                     <th>
-                                        <button className="btn btn-ghost btn-xs text-2xl text-red-500"><MdDeleteForever /></button>
+                                        <button onClick={()=>handleDelete(item._id)} className="btn btn-ghost btn-xs text-2xl text-red-500"><MdDeleteForever /></button>
                                     </th>
                                 </tr>)
                             }

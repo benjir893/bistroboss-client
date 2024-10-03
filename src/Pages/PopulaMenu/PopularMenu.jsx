@@ -32,7 +32,7 @@ const PopularMenu = () => {
                 }
             </div>
             <div className="text-center">
-                <Link to={'/'}><button className="text-blue-900 font-robotocondence font-semibold border-b-2 border-orange-600">View Full Menu</button></Link>
+                <Link to={'/order/salad'}><button className="text-blue-900 font-robotocondence font-semibold border-b-2 border-orange-600">View Full Menu</button></Link>
             </div>
         </div>
     );

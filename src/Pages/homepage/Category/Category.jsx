@@ -15,7 +15,7 @@ const Category = () => {
         <div className="">
             <div>
                 <SectionTitle
-                subheading={"from 9:00am to 10:00am"} heading={"chef recommend"}></SectionTitle>
+                    subheading={"from 9:00am to 10:00am"} heading={"chef recommend"}></SectionTitle>
                 {/* <p className='text-orange-400 bordder border-solid border-t-2 border-b-2 border-base-200 w-60 text-center mx-auto'>from 9:00am to 10:00am</p>
                 <h className="text-blue-900 text-2xl font-robotocondence font-semibold text-center p-4 uppercase">chef recommend</h> */}
             </div>

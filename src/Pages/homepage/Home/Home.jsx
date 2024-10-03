@@ -15,8 +15,7 @@ const Home = () => {
     return (
         <div>
             <Helmet><title>BBs|Home</title></Helmet>
-            <div className="">
-              
+            <div className="">              
                 <Herobanner></Herobanner>
                 <Category></Category>
                 <Singlepic header={"bistro boss"} paragraph={"Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus, eos fuga! Sed, eveniet nesciunt labore nihil dolore quia eum rem molestiae culpa magnam ex iusto consectetur aliquid? Eligendi, hic asperiores!"}></Singlepic>

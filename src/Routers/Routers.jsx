@@ -14,62 +14,92 @@ import Reservation from "../Pages/Dashboard/reservation/Reservation";
 import PaymentHistory from "../Pages/Dashboard/Paymenthistory/PaymentHistory";
 import AddReview from "../Pages/Dashboard/AddReview/AddReview";
 import MyBooking from "../Pages/Dashboard/MyBooking/MyBooking";
+import Contact from "../Pages/homepage/banner/Contact";
+import Additems from "../Pages/Dashboard/DashHome/AddItems/Additems";
+import Adminhome from "../Pages/Dashboard/DashHome/AdminHome/Adminhome";
+import Manageitems from "../Pages/Dashboard/DashHome/ManageItems/Manageitems";
+import Allusers from "../Pages/Dashboard/DashHome/AllUsers/Allusers";
 
 export const router = createBrowserRouter([
     {
-        path:'/',
-        element:<Main></Main>,
-        children:[
+        path: '/',
+        element: <Main></Main>,
+        children: [
             {
-                path:'/',
-                element:<Home></Home>
+                path: '/',
+                element: <Home></Home>
             },
             {
-                path:'/menu',
-                element:<Menu></Menu>
+                path: '/menu',
+                element: <Menu></Menu>
             },
             {
-                path:'/order/:category',
-                element:<Orders></Orders>
+                path: '/order/:category',
+                element: <Orders></Orders>
             },
+            {
+                path: '/contact',
+                element: <Contact></Contact>
+            }
         ]
     },
     {
-        path:'/login',
-        element:<Login></Login>
+        path: '/login',
+        element: <Login></Login>
 
     },
     {
-        path:'/register',
-        element:<Register></Register>
+        path: '/register',
+        element: <Register></Register>
     },
     {
-        path:'/dashboard',
-        element:<Dashboard></Dashboard>,
-        children:[
+        path: '/dashboard',
+        element: <PrivateRouter><Dashboard></Dashboard></PrivateRouter>,
+        children: [
             {
-                path:'/dashboard',
-                element:<DashboardHome></DashboardHome>
+                path: '/dashboard',
+                element: <DashboardHome></DashboardHome>
             },
             {
-                path:'/dashboard/cart',
-                element:<Cart></Cart>
+                path: '/dashboard/cart',
+                element: <Cart></Cart>
             },
             {
-                path:'/dashboard/reservation',
-                element:<Reservation></Reservation>
+                path: '/dashboard/reservation',
+                element: <Reservation></Reservation>
             },
             {
-                path:'/dashboard/paymenthistory',
-                element:<PaymentHistory></PaymentHistory>
+                path: '/dashboard/paymenthistory',
+                element: <PaymentHistory></PaymentHistory>
             },
             {
-                path:'/dashboard/addreview',
-                element:<AddReview></AddReview>
+                path: '/dashboard/addreview',
+                element: <AddReview></AddReview>
             },
             {
-                path:'/dashboard/mybooking',
-                element:<MyBooking></MyBooking>
+                path: '/dashboard/mybooking',
+                element: <MyBooking></MyBooking>
+            },
+            {
+                path: '/dashboard/contact',
+                element: <Contact></Contact>
+            },
+            // admin panel
+            {
+                path: '/dashboard/adminhome',
+                element:<Adminhome></Adminhome>
+            },
+            {
+                path: '/dashboard/additems',
+                element: <Additems></Additems>
+            },
+            {
+                path:'/dashboard/manageitems',
+                element:<Manageitems></Manageitems>
+            },
+            {
+                path:'/dashboard/allusers',
+                element:<Allusers></Allusers>
             }
         ]
     }
