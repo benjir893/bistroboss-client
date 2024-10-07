@@ -8,12 +8,12 @@ import Swal from "sweetalert2";
 
 
 const Allusers = () => {
-    const axiosSecure = useAxiosSecure()
+    const AxiosSecure = useAxiosSecure()
     //data fetching from database using tan stack query instead useEfect
     const { data: users = [], refetch } = useQuery({
-        queryKey: ['users'],
+        queryKey: ['user'],
         queryFn: async () => {
-            const res = await axiosSecure.get('/user')
+            const res = await AxiosSecure.get('/user')
             return res.data;
         }
     })
@@ -28,7 +28,7 @@ const Allusers = () => {
             confirmButtonText: "Yes, I do!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axiosSecure.patch(`/user/admin/${user._id}`)
+                AxiosSecure.patch(`/user/admin/${user._id}`)
                     .then(res => {
                         if (res.data.modifiedCount > 0) {
                             refetch();
@@ -54,7 +54,7 @@ const Allusers = () => {
             confirmButtonText: "Yes, I do!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axiosSecure.delete(`/user/${user._id}`)
+                AxiosSecure.delete(`/user/${user._id}`)
                     .then(res => {
                         if (res.data.deletedCount > 0) {
                             refetch();
@@ -94,7 +94,7 @@ const Allusers = () => {
                     </thead>
                     <tbody>
                         {
-                            users.map((user, index) => <tr key={user._id} user={user}>
+                            users.map((user, index) => <tr key={user._id}>
                                 <td>{index + 1}</td>
                                 <td>
                                     <div className="flex items-center gap-3">

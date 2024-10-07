@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import { IoHome } from "react-icons/io5";
 import { FaCalendarAlt, FaList, FaUsers, FaUtensils, FaUtensilSpoon } from "react-icons/fa";
@@ -11,10 +11,13 @@ import { MdMenuBook } from "react-icons/md";
 import { FaShopify } from "react-icons/fa";
 import useCart from '../Pages/hooks/useCart';
 import { FaEnvelope } from 'react-icons/fa6';
+import { Authcontext } from '../Authentication/AuthProvider';
+import useAdmin from '../Pages/hooks/useAdmin';
 
 const Dashboard = () => {
+    const [user] = useContext(Authcontext)
     const [cart] = useCart();
-    const isAdmin = true;
+    const [isAdmin] = useAdmin();
     return (
         <div className="md:grid grid-cols-4">
             <div className="md:col-span-1 min-h-screen bg-orange-300">
@@ -24,12 +27,12 @@ const Dashboard = () => {
                 </div>
                 <ul className="menu bg-base-200 menu-title ">
                     {
-                        isAdmin ? <>
+                        isAdmin ?<>
                             <li className='py-2'><NavLink className={'uppercase text-xl font-semibold font-robotocondence'} to={'/dashboard/adminhome'}>Admin home</NavLink></li>
                             <li className='py-2'><NavLink className={'uppercase text-xl font-semibold font-robotocondence'} to={'/dashboard/additems'}><FaUtensils /> add items</NavLink></li>
                             <li className='py-2'><NavLink className={'uppercase text-xl font-semibold font-robotocondence'} to={'/dashboard/manageitems'}><FaList /> Manage items</NavLink></li>
                             <li className='py-2'><NavLink className={'uppercase text-xl font-semibold font-robotocondence'} to={'/dashboard/allusers'}><FaUsers /> all users</NavLink></li>
-                           
+
                         </> : <>
                             <li className='py-2'><NavLink className={'uppercase text-xl font-semibold font-robotocondence'} to={'/dashboard'}>My Dashboard</NavLink></li>
                             <li className='py-2'><NavLink className={'uppercase text-xl font-semibold font-robotocondence'} to={'/dashboard'}><IoHome /> User Home</NavLink></li>
