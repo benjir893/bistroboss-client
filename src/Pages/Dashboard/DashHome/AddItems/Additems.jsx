@@ -1,9 +1,14 @@
+import SectionTitle from "../../../components/SectionTitle";
+import ItemForm from "./ItemForm";
 
 
 const Additems = () => {
     return (
         <div>
-            <h1>Admin add item page comming soon...</h1>
+            <div className=" m-10">
+            <SectionTitle subheading={"what's New"} heading={"Add Items"}></SectionTitle>
+            <ItemForm></ItemForm>
+            </div>
         </div>
     );
 };

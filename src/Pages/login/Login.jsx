@@ -84,7 +84,10 @@ const Login = () => {
 
                             </div>
                         </form>
-                        <Link className="p-2" to={'/register'}><small>No Account yet ?</small><strong>Register</strong></Link>
+                        <div className="d">
+                            <Link className="p-2" to={'/register'}><small>No Account yet ?</small><strong>Register</strong></Link>
+                            <Link to={'/'}><button className="btn btn-ghost">Back</button></Link>
+                        </div>
                         <div className="">
                             <Sociallogin></Sociallogin>
                         </div>

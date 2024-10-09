@@ -19,6 +19,8 @@ import Additems from "../Pages/Dashboard/DashHome/AddItems/Additems";
 import Adminhome from "../Pages/Dashboard/DashHome/AdminHome/Adminhome";
 import Manageitems from "../Pages/Dashboard/DashHome/ManageItems/Manageitems";
 import Allusers from "../Pages/Dashboard/DashHome/AllUsers/Allusers";
+import AdminRouter from "./AdminRouter";
+import Updateitem from "../Pages/Dashboard/DashHome/UpdateItem/Updateitem";
 
 export const router = createBrowserRouter([
     {
@@ -87,19 +89,24 @@ export const router = createBrowserRouter([
             // admin panel
             {
                 path: '/dashboard/adminhome',
-                element:<Adminhome></Adminhome>
+                element:<AdminRouter><Adminhome></Adminhome></AdminRouter>
             },
             {
                 path: '/dashboard/additems',
-                element: <Additems></Additems>
+                element: <AdminRouter><Additems></Additems></AdminRouter>
             },
             {
-                path:'/dashboard/manageitems',
-                element:<Manageitems></Manageitems>
+                path:'manageitems',
+                element:<AdminRouter><Manageitems></Manageitems></AdminRouter>
+            },
+            {
+                path:'updateitem/:id',
+                element:<AdminRouter><Updateitem></Updateitem></AdminRouter>,
+                loader:({params})=>fetch(`http://localhost:5000/menu/${params.id}`)
             },
             {
                 path:'/dashboard/allusers',
-                element:<Allusers></Allusers>
+                element:<AdminRouter><Allusers></Allusers></AdminRouter>
             }
         ]
     }

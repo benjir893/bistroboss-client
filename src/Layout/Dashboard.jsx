@@ -15,7 +15,7 @@ import { Authcontext } from '../Authentication/AuthProvider';
 import useAdmin from '../Pages/hooks/useAdmin';
 
 const Dashboard = () => {
-    const [user] = useContext(Authcontext)
+    // const {user} = useContext(Authcontext)
     const [cart] = useCart();
     const [isAdmin] = useAdmin();
     return (
@@ -27,13 +27,13 @@ const Dashboard = () => {
                 </div>
                 <ul className="menu bg-base-200 menu-title ">
                     {
-                        isAdmin ?<>
+                        isAdmin?<>
                             <li className='py-2'><NavLink className={'uppercase text-xl font-semibold font-robotocondence'} to={'/dashboard/adminhome'}>Admin home</NavLink></li>
                             <li className='py-2'><NavLink className={'uppercase text-xl font-semibold font-robotocondence'} to={'/dashboard/additems'}><FaUtensils /> add items</NavLink></li>
                             <li className='py-2'><NavLink className={'uppercase text-xl font-semibold font-robotocondence'} to={'/dashboard/manageitems'}><FaList /> Manage items</NavLink></li>
                             <li className='py-2'><NavLink className={'uppercase text-xl font-semibold font-robotocondence'} to={'/dashboard/allusers'}><FaUsers /> all users</NavLink></li>
 
-                        </> : <>
+                        </>:<>
                             <li className='py-2'><NavLink className={'uppercase text-xl font-semibold font-robotocondence'} to={'/dashboard'}>My Dashboard</NavLink></li>
                             <li className='py-2'><NavLink className={'uppercase text-xl font-semibold font-robotocondence'} to={'/dashboard'}><IoHome /> User Home</NavLink></li>
                             <li className='py-2'><NavLink className={'uppercase text-xl font-semibold font-robotocondence'} to={'/dashboard/reservation'}><FaCalendarAlt /> Reservation</NavLink></li>
